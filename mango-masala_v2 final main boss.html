@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mango Masala — Family Multicuisine, Ajmer</title>
+<meta name="description" content="Four kitchens, one home. Mango Masala has been Ajmer's beloved family restaurant since 1998 — pure-veg cuisine, world food, artisan bakery, and thin-crust pizzas." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=Italianno&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RESET + BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --cream:       #F4ECDD;
+  --cream-deep:  #EAE0CC;
+  --paper:       #FAF6EC;
+  --ink:         #14110E;
+  --ink-soft:    #2A2520;
+  --mango:       #D17A22;
+  --saffron:     #C25E1B;
+  --forest:      #2A4A2D;
+  --forest-deep: #1B3520;
+  --brass:       #B58A3A;
+  --rose:        #C97B6E;
+  --plum:        #5A2A3A;
+
+  --display: 'Cormorant Garamond', 'Fraunces', serif;
+  --body:    'DM Sans', sans-serif;
+  --script:  'Italianno', cursive;
+  --serif-alt: 'Fraunces', serif;
+}
+
+/* ============================================
+   LOADER
+   ============================================ */
+.loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+.loader.done { opacity: 0; visibility: hidden; }
+.loader-mark {
+  font-family: var(--display);
+  color: var(--cream);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  position: relative;
+  overflow: hidden;
+}
+.loader-mark span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: rise 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.loader-mark span:nth-child(1) { animation-delay: .05s; }
+.loader-mark span:nth-child(2) { animation-delay: .12s; }
+.loader-mark span:nth-child(3) { animation-delay: .19s; }
+.loader-mark span:nth-child(4) { animation-delay: .26s; }
+.loader-mark span:nth-child(5) { animation-delay: .33s; }
+.loader-mark span:nth-child(6) { animation-delay: .45s; }
+.loader-mark span:nth-child(7) { animation-delay: .52s; }
+.loader-mark span:nth-child(8) { animation-delay: .59s; }
+.loader-mark span:nth-child(9) { animation-delay: .66s; }
+.loader-mark span:nth-child(10){ animation-delay: .73s; }
+.loader-mark span:nth-child(11){ animation-delay: .80s; }
+.loader-tag {
+  margin-top: 1.5rem;
+  font-family: var(--body);
+  color: var(--brass);
+  font-size: .7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fade-in 1s ease 1s forwards;
+}
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { to { opacity: 1; } }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  mix-blend-mode: difference;
+  color: var(--cream);
+  pointer-events: none;
+}
+.nav > * { pointer-events: auto; }
+.nav-logo {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.nav-logo .amp {
+  font-family: var(--script);
+  font-size: 2rem;
+  letter-spacing: 0;
+  vertical-align: -0.15em;
+  color: var(--mango);
+  margin: 0 .15em;
+}
+.nav-meta {
+  display: flex; gap: 2rem;
+  font-size: .68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.nav-meta button {
+  color: inherit;
+  position: relative;
+  padding: .25rem 0;
+  transition: opacity .3s;
+}
+.nav-meta button::after {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 0; height: 1px; background: currentColor;
+  transition: width .4s ease;
+}
+.nav-meta button:hover::after { width: 100%; }
+
+/* ============================================
+   PAGE SYSTEM
+   ============================================ */
+.page {
+  display: none;
+  min-height: 100vh;
+  animation: page-in .8s cubic-bezier(.2,.8,.2,1);
+}
+.page.active { display: block; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   HOME — 4-PANEL HERO
+   ============================================ */
+.home {
+  position: relative;
+  background: var(--ink);
+  color: var(--cream);
+}
+.home-header {
+  position: absolute;
+  top: 5rem; left: 50%; transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+  width: min(90%, 700px);
+}
+.home-header .ribbon {
+  display: inline-block;
+  font-size: .65rem; letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.home-header h1 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.home-header h1 em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.6em;
+  color: var(--mango);
+  font-weight: 400;
+}
+.home-header .sub {
+  margin-top: .75rem;
+  font-size: .75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.65;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 100vh;
+  width: 100%;
+}
+.panel {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex .8s ease;
+  border-right: 1px solid rgba(245, 236, 221, 0.08);
+}
+.panel:last-child { border-right: none; }
+.panel-img {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter 1s ease;
+  filter: grayscale(0.3) brightness(0.55);
+}
+.panel:hover .panel-img {
+  transform: scale(1.15);
+  filter: grayscale(0) brightness(0.75);
+}
+.panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,17,14,0.2) 0%, rgba(20,17,14,0.7) 70%, rgba(20,17,14,0.95) 100%);
+  z-index: 1;
+}
+.panel-content {
+  position: absolute; inset: 0; z-index: 2;
+  padding: 3rem 2rem;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  color: var(--cream);
+}
+.panel-num {
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  opacity: .7;
+}
+.panel-bottom { display: flex; flex-direction: column; gap: .5rem; }
+.panel-est {
+  font-family: var(--script);
+  font-size: 2rem;
+  color: var(--mango);
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.panel-name {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+.panel-name span {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+}
+.panel-tag {
+  margin-top: .75rem;
+  font-size: .7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-weight: 400;
+}
+.panel-enter {
+  margin-top: 2rem;
+  display: flex; align-items: center; gap: .75rem;
+  font-size: .65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease, transform .4s ease;
+  color: var(--mango);
+}
+.panel:hover .panel-enter { opacity: 1; transform: translateY(0); }
+.panel-enter::after {
+  content: ''; width: 28px; height: 1px;
+  background: var(--mango);
+  transition: width .4s ease;
+}
+.panel:hover .panel-enter::after { width: 50px; }
+
+.panel-side {
+  position: absolute;
+  right: 1.5rem; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+  font-size: .6rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  opacity: .35;
+  white-space: nowrap;
+}
+
+.home-footer {
+  position: absolute;
+  bottom: 1.5rem; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  z-index: 10;
+  font-size: .65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ============================================
+   BRAND PAGES — SHARED
+   ============================================ */
+.brand {
+  background: var(--paper);
+  color: var(--ink);
+  padding-bottom: 6rem;
+}
+.brand .back {
+  position: fixed;
+  top: 1.2rem; left: 2.5rem;
+  z-index: 200;
+  font-size: .65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: flex; align-items: center; gap: .75rem;
+  padding: .5rem .75rem;
+  background: rgba(244,236,221,0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(20,17,14,0.08);
+  border-radius: 100px;
+  transition: all .3s;
+}
+.brand .back:hover {
+  background: var(--ink); color: var(--cream);
+}
+.brand .back::before {
+  content: '←'; font-size: 1rem; line-height: 1;
+}
+/* Hide nav logo on brand pages so back button doesn't clash */
+body.brand-page .nav-logo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand-hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+.brand-hero-text {
+  padding: 8rem 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.brand-hero-text .kicker {
+  font-size: .7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+.brand-hero-text .title {
+  font-family: var(--display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+.brand-hero-text .title em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.brand-hero-text .lede {
+  font-family: var(--serif-alt);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  font-weight: 300;
+  font-style: italic;
+  max-width: 480px;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+.brand-hero-text .meta {
+  display: flex; gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(20,17,14,0.15);
+  max-width: 480px;
+}
+.brand-hero-text .meta-item {
+  display: flex; flex-direction: column;
+}
+.brand-hero-text .meta-label {
+  font-size: .6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-bottom: .25rem;
+}
+.brand-hero-text .meta-value {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.brand-hero-image {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.brand-hero-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(20,17,14,0.2));
+}
+.brand-hero-floating {
+  position: absolute;
+  bottom: 2.5rem; left: 2.5rem;
+  z-index: 2;
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-style: italic;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   BRAND PAGES — STORY SECTION
+   ============================================ */
+.story {
+  padding: 8rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.story-side {
+  position: sticky; top: 6rem;
+}
+.story-side .label {
+  font-size: .65rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.story-side .title {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  font-style: italic;
+}
+.story-body {
+  font-family: var(--serif-alt);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+.story-body p { margin-bottom: 1.5rem; }
+.story-body p:first-letter {
+  font-family: var(--display);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.85;
+  margin: 0.4rem 0.6rem 0 0;
+  color: var(--saffron);
+  font-weight: 500;
+}
+.story-body p + p:first-letter {
+  font-size: 1.1rem; float: none; margin: 0; color: inherit; font-weight: inherit; font-family: inherit;
+}
+
+/* ============================================
+   MENU GRID
+   ============================================ */
+.menu-section {
+  padding: 5rem 5rem 6rem;
+  background: var(--cream);
+}
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(20,17,14,0.15);
+}
+.menu-header .left .kicker {
+  font-size: .65rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: .75rem;
+}
+.menu-header .left h2 {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.menu-header .left h2 em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.3em;
+}
+.menu-header .right {
+  font-size: .7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: right;
+  opacity: .6;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 2.5rem;
+}
+.dish {
+  display: flex; flex-direction: column;
+  cursor: default;
+  transition: transform .5s ease;
+}
+.dish:hover { transform: translateY(-6px); }
+.dish-img {
+  aspect-ratio: 4 / 5;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1.5rem;
+  filter: saturate(1.05);
+  transition: filter .5s;
+  position: relative;
+  overflow: hidden;
+}
+.dish-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(20,17,14,0.15));
+  opacity: 0; transition: opacity .5s;
+}
+.dish:hover .dish-img::after { opacity: 1; }
+.dish-num {
+  font-family: var(--display);
+  font-size: .85rem;
+  letter-spacing: 0.3em;
+  color: var(--brass);
+  margin-bottom: .5rem;
+}
+.dish-name {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+.dish-name em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--saffron);
+}
+.dish-desc {
+  font-size: .9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 340px;
+}
+
+/* ============================================
+   GALLERY / ATMOSPHERE
+   ============================================ */
+.atmosphere {
+  padding: 6rem 0;
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+}
+.atmosphere-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 2rem;
+}
+.atmosphere-header .kicker {
+  font-size: .65rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--mango);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.atmosphere-header h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+}
+.gallery-strip {
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem;
+  animation: scroll-strip 40s linear infinite;
+  width: max-content;
+}
+.gallery-strip:hover { animation-play-state: paused; }
+.gallery-img {
+  width: 360px;
+  aspect-ratio: 4 / 5;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  filter: grayscale(0.2) brightness(0.95);
+  transition: filter .5s;
+}
+.gallery-img:hover { filter: grayscale(0) brightness(1); }
+@keyframes scroll-strip {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+/* ============================================
+   VISIT / CTA
+   ============================================ */
+.visit {
+  padding: 8rem 5rem;
+  text-align: center;
+  background: var(--paper);
+  position: relative;
+}
+.visit .ornament {
+  font-family: var(--script);
+  font-size: 4rem;
+  color: var(--mango);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.visit h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.visit h2 em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.3em;
+  color: var(--saffron);
+}
+.visit p {
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  font-family: var(--serif-alt);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+.visit-actions {
+  display: flex; justify-content: center; gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: .7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--ink);
+  transition: all .3s;
+  border-radius: 100px;
+}
+.btn-primary {
+  background: var(--ink); color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--saffron); border-color: var(--saffron);
+}
+.btn-ghost {
+  background: transparent; color: var(--ink);
+}
+.btn-ghost:hover {
+  background: var(--ink); color: var(--cream);
+}
+
+/* ============================================
+   FOOTER (only on home)
+   ============================================ */
+.site-footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 5rem 5rem 2rem;
+  display: none;
+}
+.brand .site-footer { display: block; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+}
+.footer-brand h3 {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: .5rem;
+}
+.footer-brand p {
+  font-family: var(--serif-alt);
+  font-style: italic;
+  font-weight: 300;
+  opacity: .7;
+  max-width: 320px;
+  font-size: .95rem;
+}
+.footer-col h4 {
+  font-size: .65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--mango);
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: .65rem;
+  font-size: .9rem;
+  opacity: .75;
+  cursor: pointer;
+  transition: opacity .3s, color .3s;
+}
+.footer-col li:hover { opacity: 1; color: var(--mango); }
+.footer-col p {
+  font-size: .9rem;
+  opacity: .75;
+  line-height: 1.6;
+  margin-bottom: .5rem;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(244,236,221,0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: .65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: .4;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .panels { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: auto; }
+  .panel { height: 50vh; min-height: 360px; }
+  .home-header { top: 3rem; }
+  .home-footer { display: none; }
+
+  .brand-hero { grid-template-columns: 1fr; }
+  .brand-hero-text { padding: 7rem 2rem 3rem; order: 2; }
+  .brand-hero-image { height: 60vh; order: 1; }
+
+  .story { padding: 5rem 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
+  .story-side { position: static; }
+  .menu-section { padding: 4rem 2rem 5rem; }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .visit { padding: 5rem 2rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .nav { padding: 1.25rem 1.5rem; }
+  .brand .back { left: 1.5rem; top: 1rem; }
+}
+@media (max-width: 640px) {
+  .panels { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); }
+  .panel { min-height: 320px; height: auto; }
+  .home-header h1 { font-size: 1.7rem; }
+  .nav-meta { display: none; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .brand-hero-text { padding: 6rem 1.5rem 3rem; }
+  .menu-section, .visit, .story { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .menu-header { flex-direction: column; align-items: start; gap: 1rem; }
+  .menu-header .right { text-align: left; }
+}
+
+/* ============================================
+   FULL MENU SYSTEM
+   ============================================ */
+.full-menu-featured {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+  padding: 5rem 5rem 4rem;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(20,17,14,.1);
+}
+.fm-card { cursor: default; }
+.fm-card-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+.fm-card-img-inner {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.fm-card:hover .fm-card-img-inner { transform: scale(1.06); }
+.fm-label {
+  font-size: .58rem; letter-spacing: .45em;
+  text-transform: uppercase; color: var(--brass);
+  margin-bottom: .35rem; font-weight: 500;
+}
+.fm-name {
+  font-family: var(--display);
+  font-size: 1.4rem; font-weight: 500; line-height: 1.1; margin-bottom: .3rem;
+}
+.fm-name em { font-style: italic; color: var(--saffron); font-weight: 400; }
+.fm-desc { font-size: .82rem; color: var(--ink-soft); line-height: 1.5; max-width: 320px; }
+.fm-price { margin-top: .5rem; font-family: var(--display); font-size: 1.05rem; color: var(--saffron); font-weight: 500; }
+
+.full-menu-wrap { padding: 5rem 5rem 6rem; background: var(--cream); }
+.full-menu-header {
+  display: flex; justify-content: space-between; align-items: end;
+  margin-bottom: 2.5rem; padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(20,17,14,.15);
+}
+.full-menu-header h2 {
+  font-family: var(--display); font-size: clamp(2rem,4vw,3rem); font-weight: 300; line-height: 1;
+}
+.full-menu-header h2 em { font-family: var(--script); font-style: normal; }
+.full-menu-header .note { font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; opacity: .6; text-align: right; }
+.menu-tabs-bar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--cream);
+  padding: 1rem 0 .75rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(20,17,14,.08);
+}
+.menu-tabs-scroll { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; }
+.menu-tabs-scroll::-webkit-scrollbar { display: none; }
+.m-tab {
+  font-size: .56rem; letter-spacing: .35em; text-transform: uppercase;
+  font-weight: 500; font-family: var(--body);
+  padding: .55rem 1.2rem;
+  border: 1px solid rgba(20,17,14,.2); border-radius: 100px;
+  white-space: nowrap; cursor: pointer;
+  transition: all .22s; background: transparent; color: var(--ink);
+}
+.m-tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.m-tab:hover:not(.active) { border-color: var(--ink); background: rgba(20,17,14,.04); }
+.m-panel { display: none; }
+.m-panel.active { display: block; animation: page-in .4s ease; }
+.m-cat { margin-bottom: 3rem; }
+.m-cat-head {
+  font-family: var(--display); font-size: 1.4rem; font-weight: 300; font-style: italic;
+  margin-bottom: 1rem; padding-bottom: .65rem;
+  border-bottom: 1px solid rgba(20,17,14,.1);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+}
+.m-cat-head em { color: var(--saffron); }
+.m-cat-price-note {
+  font-size: .58rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--brass); font-family: var(--body); font-style: normal; font-weight: 500;
+}
+.m-row {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: baseline; gap: 1.5rem;
+  padding: .8rem 0; border-bottom: 1px solid rgba(20,17,14,.05);
+}
+.m-row:last-child { border-bottom: none; }
+.m-name {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 500; line-height: 1.2; margin-bottom: .15rem;
+}
+.m-name em { color: var(--saffron); font-style: italic; font-weight: 400; }
+.m-desc { font-size: .8rem; color: var(--ink-soft); line-height: 1.5; opacity: .82; max-width: 520px; }
+.m-price { font-family: var(--display); font-size: .95rem; font-weight: 500; color: var(--saffron); white-space: nowrap; text-align: right; }
+.m-badge {
+  display: inline-block; font-size: .46rem; letter-spacing: .28em;
+  text-transform: uppercase; padding: .15rem .48rem;
+  border-radius: 100px; margin-left: .35rem; vertical-align: middle;
+  font-family: var(--body); font-weight: 500;
+}
+.m-badge.sig { border: 1px solid var(--brass); color: var(--brass); }
+.m-badge.spicy { border: 1px solid var(--rose); color: var(--rose); }
+.m-badge.nv { border: 1px solid var(--saffron); color: var(--saffron); }
+.m-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+@media (max-width: 1024px) {
+  .full-menu-featured { padding: 4rem 2rem; grid-template-columns: 1fr 1fr; }
+  .full-menu-featured .fm-card:last-child { display: none; }
+  .full-menu-wrap { padding: 4rem 2rem 5rem; }
+  .m-2col { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .full-menu-featured { grid-template-columns: 1fr; }
+  .full-menu-featured .fm-card:last-child { display: block; }
+  .full-menu-featured .fm-card:nth-child(2) { display: none; }
+}
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-hero {
+  min-height: 70vh;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(42,74,45,0.25) 0%, transparent 70%);
+}
+.about-hero .kicker {
+  font-size: .65rem; letter-spacing: 0.5em;
+  text-transform: uppercase; color: var(--mango);
+  margin-bottom: 1.5rem; font-weight: 500; position: relative;
+}
+.about-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.about-hero h1 em {
+  font-family: var(--script);
+  font-style: normal;
+  color: var(--mango);
+  font-size: 1.2em;
+}
+.about-hero .sub {
+  font-family: var(--serif-alt);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.15rem;
+  opacity: .75;
+  max-width: 560px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.about-intro {
+  padding: 7rem 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 7rem;
+  align-items: start;
+}
+.about-intro-side { position: sticky; top: 6rem; }
+.about-intro-side .label {
+  font-size: .65rem; letter-spacing: 0.5em;
+  text-transform: uppercase; color: var(--brass);
+  margin-bottom: 1rem; font-weight: 500;
+}
+.about-intro-side .big-year {
+  font-family: var(--display);
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--saffron);
+  opacity: .18;
+  margin-top: .25rem;
+}
+.about-intro-body {
+  font-family: var(--serif-alt);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+.about-intro-body p { margin-bottom: 1.5rem; }
+.about-intro-body p:first-child::first-letter {
+  font-family: var(--display);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.85;
+  margin: 0.4rem 0.6rem 0 0;
+  color: var(--saffron);
+  font-weight: 500;
+}
+
+.about-awards {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 6rem 5rem;
+}
+.about-awards-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.about-awards-header .kicker {
+  font-size: .65rem; letter-spacing: 0.5em;
+  text-transform: uppercase; color: var(--mango);
+  margin-bottom: 1rem; font-weight: 500;
+}
+.about-awards-header h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+}
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.award-card {
+  border: 1px solid rgba(244,236,221,0.15);
+  padding: 2.5rem;
+  text-align: center;
+  transition: border-color .3s, background .3s;
+  border-radius: 4px;
+}
+.award-card:hover {
+  border-color: var(--mango);
+  background: rgba(244,236,221,0.04);
+}
+.award-icon {
+  font-family: var(--script);
+  font-size: 3rem;
+  color: var(--mango);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.award-title {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: .5rem;
+}
+.award-sub {
+  font-size: .8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: .75rem;
+  font-weight: 500;
+}
+.award-desc {
+  font-size: .9rem;
+  opacity: .7;
+  line-height: 1.55;
+  font-family: var(--serif-alt);
+  font-style: italic;
+}
+
+.about-timeline {
+  padding: 7rem 5rem;
+  background: var(--paper);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.about-timeline-header {
+  margin-bottom: 4rem;
+}
+.about-timeline-header .kicker {
+  font-size: .65rem; letter-spacing: 0.5em;
+  text-transform: uppercase; color: var(--brass);
+  margin-bottom: 1rem; font-weight: 500;
+}
+.about-timeline-header h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+}
+.timeline-list { position: relative; padding-left: 0; }
+.timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(20,17,14,0.1);
+  align-items: start;
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-year {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--saffron);
+  line-height: 1;
+  padding-top: .15rem;
+}
+.timeline-content h3 {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: .4rem;
+}
+.timeline-content h3 em {
+  font-style: italic;
+  color: var(--saffron);
+}
+.timeline-content p {
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 600px;
+}
+
+.about-cta {
+  padding: 7rem 5rem;
+  text-align: center;
+  background: var(--cream);
+}
+.about-cta .ornament {
+  font-family: var(--script);
+  font-size: 4rem;
+  color: var(--mango);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.about-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.about-cta h2 em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.3em;
+  color: var(--saffron);
+}
+.about-cta p {
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  font-family: var(--serif-alt);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 1024px) {
+  .about-intro { padding: 5rem 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-intro-side { position: static; }
+  .awards-grid { grid-template-columns: 1fr 1fr; }
+  .about-awards { padding: 5rem 2rem; }
+  .about-timeline { padding: 5rem 2rem; }
+  .about-cta { padding: 5rem 2rem; }
+}
+@media (max-width: 640px) {
+  .awards-grid { grid-template-columns: 1fr; }
+  .timeline-item { grid-template-columns: 80px 1fr; gap: 1.5rem; }
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+</style>
+</head>
+<body>
+
+<!-- =============== LOADER =============== -->
+<div class="loader" id="loader">
+  <div class="loader-mark">
+    <span>M</span><span>A</span><span>N</span><span>G</span><span>O</span>
+    <span>&nbsp;</span>
+    <span>M</span><span>A</span><span>S</span><span>A</span><span>L</span><span>A</span>
+  </div>
+  <div class="loader-tag">Ajmer · Since 1997</div>
+</div>
+
+<!-- =============== GRAIN OVERLAY =============== -->
+<div class="grain"></div>
+
+<!-- =============== NAV =============== -->
+<nav class="nav">
+  <div class="nav-logo" data-nav="home">Mango Masala</div>
+  <div class="nav-meta">
+    <button data-nav="home">Home</button>
+    <button data-nav="veg">Veg</button>
+    <button data-nav="curry">World</button>
+    <button data-nav="bakery">Bakery</button>
+    <button data-nav="pizza">Pizza</button>
+    <button data-nav="about">About</button>
+  </div>
+</nav>
+
+<!-- =============== HOME =============== -->
+<section class="page home active" id="page-home">
+  <div class="home-header">
+    <div class="ribbon">Family Multicuisine · Ajmer, Rajasthan</div>
+    <h1>Four kitchens, <em>one</em> table.</h1>
+    <div class="sub">Established 1997</div>
+  </div>
+
+  <div class="panels">
+    <!-- Panel 1: Pure Veg -->
+    <div class="panel" data-nav="veg">
+      <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1200&q=85');"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <div class="panel-num">— 01</div>
+        <div class="panel-side">Pure Vegetarian</div>
+        <div class="panel-bottom">
+          <div class="panel-est">since 1998</div>
+          <div class="panel-name">Mango <span><em>Masala</em></span></div>
+          <div class="panel-tag">Pure Veg Kitchens</div>
+          <div class="panel-enter">Enter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: World Food -->
+    <div class="panel" data-nav="curry">
+      <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=85');"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <div class="panel-num">— 02</div>
+        <div class="panel-side">Borderless Cuisine</div>
+        <div class="panel-bottom">
+          <div class="panel-est">since 2004</div>
+          <div class="panel-name">Mango <span><em>Curry</em></span></div>
+          <div class="panel-tag">Serving World Food</div>
+          <div class="panel-enter">Enter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Bakery -->
+    <div class="panel" data-nav="bakery">
+      <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&q=85');"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <div class="panel-num">— 03</div>
+        <div class="panel-side">Patisserie &amp; Boulangerie</div>
+        <div class="panel-bottom">
+          <div class="panel-est">est. 1997</div>
+          <div class="panel-name">Cake <span><em>Craft</em></span></div>
+          <div class="panel-tag">&amp; The Earth Bakery</div>
+          <div class="panel-enter">Enter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Pizza -->
+    <div class="panel" data-nav="pizza">
+      <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=85');"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <div class="panel-num">— 04</div>
+        <div class="panel-side">Wood-Fired All Day</div>
+        <div class="panel-bottom">
+          <div class="panel-est">since 1998</div>
+          <div class="panel-name">Thin <span><em>Crust</em></span></div>
+          <div class="panel-tag">The Thinnest in Town</div>
+          <div class="panel-enter">Enter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-footer">
+    <div>Ajmer · Rajasthan · India</div>
+    <div>Open · 11 am — 11 pm</div>
+  </div>
+</section>
+
+<!-- =============== PURE VEG PAGE =============== -->
+<section class="page brand" id="page-veg">
+  <button class="back" data-nav="home">Back</button>
+
+  <div class="brand-hero">
+    <div class="brand-hero-text">
+      <div class="kicker">— Chapter One · Pure Veg</div>
+      <h1 class="title">Mango<br/><em>Masala</em></h1>
+      <p class="lede">A vegetarian kitchen rooted in Rajasthan, plated for a city that has always known how to eat well. Soft, smoky, slow — and never rushed.</p>
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Established</div>
+          <div class="meta-value">1998</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Cuisine</div>
+          <div class="meta-value">Pure Vegetarian</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">House</div>
+          <div class="meta-value">Ajmer</div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-hero-image" style="background-image: url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=1600&q=90');">
+      <div class="brand-hero-floating">— spice, butter, smoke</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="story-side">
+      <div class="label">— The Story</div>
+      <div class="title">A quiet love letter to vegetables.</div>
+    </div>
+    <div class="story-body">
+      <p>For more than two decades, the Pure Veg kitchen has been the heart of the Mango Masala house. It opened in 1998 with a simple idea — that vegetarian food in Ajmer deserved the same care, technique and theatre that the world reserves for everything else.</p>
+      <p>Our cooks come from across Rajasthan, and they bring with them a quiet, generational kind of knowledge: how a tadka should sound when it lands in the dal, how long a paneer should rest before it meets the tandoor, how to bring out the sweetness in a tomato without losing its temper.</p>
+      <p>What you eat here is unhurried. The gravies are built in the morning. The breads are pulled to order. The thalis are plated like a quiet little carnival of small bowls. Nothing arrives at your table until it is ready to be there.</p>
+    </div>
+  </div>
+
+  <!-- Featured Dishes -->
+  <div class="full-menu-featured">
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=85');"></div></div>
+      <div class="fm-label">— Chef's Signature</div>
+      <div class="fm-name">Paneer <em>Tikka Masala</em></div>
+      <div class="fm-desc">House paneer finished in a smoky tomato gravy with kasuri methi and brown onion.</div>
+      <div class="fm-price">₹499</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=85');"></div></div>
+      <div class="fm-label">— Must Order</div>
+      <div class="fm-name">Dal <em>Makhani</em></div>
+      <div class="fm-desc">Black urad lentils slow-cooked with tomato, butter and a whisper of cream. Our most requested dal.</div>
+      <div class="fm-price">₹349</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=900&q=85');"></div></div>
+      <div class="fm-label">— The Full Experience</div>
+      <div class="fm-name">Rajasthani <em>Thali</em></div>
+      <div class="fm-desc">Gatta Masala, Aloo Pyaz ki Sabzi, Dal, Rice, Raita, Salad, Papad, 2 Missi Roti and Ice Cream.</div>
+      <div class="fm-price">₹499</div>
+    </div>
+  </div>
+
+  <!-- Full Menu -->
+  <div class="full-menu-wrap">
+    <div class="full-menu-header">
+      <div>
+        <div style="font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem;font-weight:500;">— Full Menu</div>
+        <h2>Everything from <em>our kitchen</em></h2>
+      </div>
+      <div class="note">Pure Vegetarian<br/>All day · 11 am — 11 pm</div>
+    </div>
+
+    <div class="menu-tabs-bar">
+      <div class="menu-tabs-scroll" data-tabs="veg">
+        <button class="m-tab active" data-tab="v-bev">Beverages</button>
+        <button class="m-tab" data-tab="v-starter">Starters</button>
+        <button class="m-tab" data-tab="v-south">South Indian</button>
+        <button class="m-tab" data-tab="v-paneer">Paneer &amp; Chef's</button>
+        <button class="m-tab" data-tab="v-main">Mains &amp; Dal</button>
+        <button class="m-tab" data-tab="v-bread">Rice &amp; Breads</button>
+        <button class="m-tab" data-tab="v-thali">Thalis</button>
+        <button class="m-tab" data-tab="v-dessert">Desserts</button>
+      </div>
+    </div>
+
+    <!-- Beverages -->
+    <div class="m-panel active" data-tab="v-bev">
+      <div class="m-cat">
+        <div class="m-cat-head">Tea, Coffee &amp; <em>Hot Drinks</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Adrak Masala Tea</div></div><div class="m-price">₹79</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hot Ginger Lemon Tea</div></div><div class="m-price">₹199</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Green Tea</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cappuccino</div><div class="m-desc">A classic coffee.</div></div><div class="m-price">₹199</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Espresso <em>Italiano</em></div><div class="m-desc">Strong shot, no milk, half-filled demi tasse.</div></div><div class="m-price">₹169</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Black Coffee / Americano</div></div><div class="m-price">₹179</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Iced Americano</div></div><div class="m-price">₹179</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Café Latte</div><div class="m-desc">Espresso shots with steamed milk, topped with foam.</div></div><div class="m-price">₹199</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Ultimate Hot Chocolate</div><div class="m-desc">A tall mug of chocolate drowned in steamed milk.</div></div><div class="m-price">₹279</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Irish Coffee</div><div class="m-desc">Rich coffee in Irish Cream, Hazelnut or Caramel.</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Affogato Float</div><div class="m-desc">Espresso shot with a scoop of vanilla or chocolate ice cream.</div></div><div class="m-price">₹239</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Café Frappe</div><div class="m-desc">Coffee ice cream and iced espresso blended to creamy perfection.</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Choco Frappe</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Milk (Chaach)</div></div><div class="m-price">₹149</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Lassi <em>(Sweet or Salted)</em></div></div><div class="m-price">₹249</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Banana Lassi / Mango Lassi</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jaljeera / Soft Drinks</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Iced Tea / Lemon Soda</div></div><div class="m-price">₹199</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fresh Cold Press Juice</div><div class="m-desc">Orange · Pineapple · Watermelon · Mixed Fruit</div></div><div class="m-price">₹269</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Mocktails &amp; <em>Floats</em><span class="m-cat-price-note">₹299 each</span></div>
+        <div class="m-desc" style="margin-bottom:1.5rem;opacity:.8;">Lips of Strawberry · Fruit Punch · Black Ginger · Blue Moon · Virgin Mojito · Fire &amp; Ice · Irish Mist · Pink Panther Soda · Lemon Demon Soda · Mango Tango with Maaza · Midnight Beauty</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Milk Shakes<span class="m-cat-price-note">₹329 each</span></div>
+        <div class="m-desc" style="margin-bottom:1.5rem;opacity:.8;">Vanilla · Natural Rose · Real Mango · Strawberry · Chocolate · Banana · Pineapple · Anjeer · Kesar Badam Pista · Butter Scotch</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Grand Thick <em>Shakes</em><span class="m-cat-price-note">₹349 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dutch Truffle Cake Shake</div><div class="m-desc">A chocolate cake shake so sinful you'll need a confession.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kit Kat Shake</div><div class="m-desc">Everyone's favourite chocolate bar blended with choc ice cream.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Ferrero Rocher Shake</div><div class="m-desc">Crunchy bits of real Ferrero Rocher in creamy chocolate harmony.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Toblerone Shake</div><div class="m-desc">Real Toblerone chunks blended with chocolate ice cream and nougat.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Snicker Bar Shake</div><div class="m-desc">A liquid Snickers you can drink.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Black Forest Shake / Oreo Shake</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Starters -->
+    <div class="m-panel" data-tab="v-starter">
+      <div class="m-cat">
+        <div class="m-cat-head">Salads</div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Onion Salad</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Green Salad / Kachumber Salad</div></div><div class="m-price">₹99</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Farm Fresh Salad / Caesar Salad</div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chowpatti <em>Specials</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Bread</div><div class="m-desc">With or without cheese.</div></div><div class="m-price">₹359</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">French Fries</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Cutlets with Chips</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Pakora Tokri</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pakora Tokri</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pao Bhaji</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chole Bhatura</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hara Bhara Kabab</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Veg Platter</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Paneer Tikka</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Spring Rolls</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Papad — Roasted / Fried</div></div><div class="m-price">₹39 / ₹49</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Burgers, Sandwiches &amp; <em>Hot Dogs</em><span class="m-cat-price-note">served with wafers</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Burger <em>(without Cheese)</em></div></div><div class="m-price">₹339</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Burger <em>with Cheese</em></div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Bruschetta Open Sandwich</div><div class="m-desc">Garlic bread topped with tomato, oregano &amp; cheese.</div></div><div class="m-price">₹369</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Grilled Veg. Sandwich</div></div><div class="m-price">₹369</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Grilled Club Sandwich with Aloo Tikki</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Patakha Hot Dog</div></div><div class="m-price">₹369</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Tikki Hot Dog</div></div><div class="m-price">₹369</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- South Indian -->
+    <div class="m-panel" data-tab="v-south">
+      <div class="m-cat">
+        <div class="m-cat-head">South <em>Indian</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Idli</div></div><div class="m-price">₹269</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Idli / Vada Sambhar / Plain Dosa</div></div><div class="m-price">₹289</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Dosa</div></div><div class="m-price">₹339</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rawa Masala Dosa</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mysore Masala Dosa</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Uttapam</div><div class="m-desc">Choice of toppings: Onion Tomato, Mix Veg, Chilly Cheese.</div></div><div class="m-price">₹359</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paneer & Chef's -->
+    <div class="m-panel" data-tab="v-paneer">
+      <div class="m-cat">
+        <div class="m-cat-head">Paneer <em>Specials</em><span class="m-cat-price-note">₹499 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chola Paneer</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Bhurji</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Paneer Masala</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Shahi Paneer</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kadhai Paneer</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Pasanda Mughlai</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Tikka Masala</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Palak Paneer</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chef's <em>Specials</em><span class="m-cat-price-note">₹529 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Babycorn Makka Malai Palak<span class="m-badge sig">Chef</span></div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Methi Mutter Mushroom</div><div class="m-desc">Cooked in a lightly spiced cashew gravy.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Buddha's Delight</div><div class="m-desc">A Chinese specialty, our style.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Mushroom Matar</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Hungama<span class="m-badge sig">Signature</span></div><div class="m-desc">Our signature dish, presented on a sizzling tawa.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kaju Curry / Navratan Korma</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Raj. Gatte ki Sabji</div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mains & Dal -->
+    <div class="m-panel" data-tab="v-main">
+      <div class="m-cat">
+        <div class="m-cat-head">Indian <em>Evergreen</em><span class="m-cat-price-note">₹449 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Gobhi / Aloo Mutter</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jeera Aloo / Mix Veg. Hot Pot</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chana Masala / Chola Paneer</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jaipuri Aloo Pyaz ki Sabzi</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Malai Kofta / Malai Pyaz / Dum Aloo</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Dals<span class="m-cat-price-note">₹349 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dal Makhani</div><div class="m-desc">Slow-cooked black urad with tomato, butter and cream.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dal Tadka</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese <em>Veg</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Fried Rice / Burnt Garlic Fried Rice</div></div><div class="m-price">₹429</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Schezwan / Mushroom Fried Rice</div></div><div class="m-price">₹429</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Chowmein / Mushroom Chowmein</div></div><div class="m-price">₹449</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hakka Noodles / Pan Fry Hakka Noodles</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Golden Chilly Potatoes / Honey Chilly Potato</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Manchurian / Chilly Paneer</div></div><div class="m-price">₹449–₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Laughing Buddha Delight</div></div><div class="m-price">₹529</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Soups<span class="m-cat-price-note">₹229 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Cream of Tomato · Veg. Sweet Corn · Clear Veg. · Manchow · Hot 'n' Sour</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Raita &amp; <em>Accompaniments</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Plain Fresh Curd</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Raita (Veg. / Boondi / Pineapple)</div></div><div class="m-price">₹199</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Papad (Fried or Roasted)</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Roasted Papad / Fried Papad</div></div><div class="m-price">₹39 / ₹49</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rice & Breads -->
+    <div class="m-panel" data-tab="v-bread">
+      <div class="m-cat">
+        <div class="m-cat-head">Rice &amp; <em>Pulao</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Steamed Rice</div></div><div class="m-price">₹179</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jeera Pulao / Subz. Pulao</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kashmiri Pulao</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Biryani</div></div><div class="m-price">₹399</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">From the <em>Tandoor</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Roti</div></div><div class="m-price">₹29</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Roti</div></div><div class="m-price">₹39</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Plain Naan</div></div><div class="m-price">₹79</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Missi Roti</div></div><div class="m-price">₹119</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Naan</div></div><div class="m-price">₹129</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Naan / Laccha Parantha</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Stuffed Naan / Stuffed Parantha</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kulcha / Stuffed Kulcha</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cheese Naan / Pudina Naan</div></div><div class="m-price">₹159</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thalis -->
+    <div class="m-panel" data-tab="v-thali">
+      <div class="m-cat">
+        <div class="m-cat-head">Thalis<span class="m-cat-price-note">₹499 each · includes ice cream</span></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Punjabi Thali</div><div class="m-desc">Paneer, one veg, dal, pulao, raita, salad, rice, 2 butter naan, ice cream.</div></div><div class="m-price">₹499</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Rajasthani Thali</div><div class="m-desc">Gatta Masala, Aloo Pyaz ki Sabji, Dal, Rice, Raita, Salad, Papad, 2 Missi Roti, Ice Cream.</div></div><div class="m-price">₹499</div></div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Mini <em>Meals</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fried Rice with Manchurian</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Chowmein with Chilly Paneer</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Parantha with Raita</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Kulcha with Chola</div></div><div class="m-price">₹349</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Malai Kofta with Butter Naan</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Laccha Parantha with Dal Makhani</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dal Tadka, Malai Pyaz, Butter Naan</div></div><div class="m-price">₹359</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Paneer, Dal Makhani, Butter Naan</div></div><div class="m-price">₹429</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="m-panel" data-tab="v-dessert">
+      <div class="m-cat">
+        <div class="m-cat-head">Desserts &amp; <em>Sweets</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Gulab Jamun (2 pcs)</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rum Ball</div></div><div class="m-price">₹80</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Truffle Pudding</div></div><div class="m-price">₹95</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Mousse in Edible Choc Cup</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hot Chocolate Lava Cake</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Walnut Brownie (70gm)</div></div><div class="m-price">₹99</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Apple Pie / Cheese Cake Blue Berry</div></div><div class="m-price">₹109 / ₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Lemon Tart / Chocolate Tart</div></div><div class="m-price">₹59</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Swiss Roll / Cream Roll</div></div><div class="m-price">₹109 / ₹69</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Double Chocolate / Chocochip Brownie</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mini Pinata Gems / Doughnuts</div></div><div class="m-price">₹109 / ₹45–85</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Ice Cream <em>Sundaes</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Single Sundae</div><div class="m-desc">Little Sundae · Love Dip · Sundance · Pina Colada · Dark Chocochips · Fruit Tree · Black Forest · Fallooda</div></div><div class="m-price">₹269</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Double Sundae</div><div class="m-desc">Naughty Nuts · Funny Bunny · Lady Police · Orange Forage · Mango Waltz · Fruit Bonanza · Pineapple Passion</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Triple Sundae</div><div class="m-desc">Hot Chocolate Fudge · Mango Masala · Arabian Nights · Fruit Orchard · Earthquake · Toppler</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Designer Sundaes</div><div class="m-desc">Banana Split · Bulls Eye (truffle cake on a hot sizzler with vanilla ice cream)</div></div><div class="m-price">₹399</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="atmosphere">
+    <div class="atmosphere-header">
+      <div class="kicker">— The Room</div>
+      <h2>An afternoon in the Pure Veg kitchen.</h2>
+    </div>
+    <div class="gallery-strip">
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=85');"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=85');"></div>
+    </div>
+  </div>
+
+  <div class="visit">
+    <div class="ornament">a table is waiting</div>
+    <h2>Come for lunch. <em>Stay</em> for dinner.</h2>
+    <p>Walk-ins always welcome, but a quiet table is easier to find with a phone call.</p>
+    <div class="visit-actions">
+      <a class="btn btn-primary" href="tel:+910000000000">Reserve a Table</a>
+      <button class="btn btn-ghost" data-nav="home">Back to the Four</button>
+    </div>
+  </div>
+
+  <footer class="site-footer"></footer>
+</section>
+
+<!-- =============== WORLD FOOD PAGE =============== -->
+<section class="page brand" id="page-curry">
+  <button class="back" data-nav="home">Back</button>
+
+  <div class="brand-hero">
+    <div class="brand-hero-text">
+      <div class="kicker">— Chapter Two · World Food</div>
+      <h1 class="title">Mango<br/><em>Curry</em></h1>
+      <p class="lede">A passport in a single dining room. Twenty years of borderless cooking — Italian, Mexican, Lebanese, Pan-Asian — under one roof in Ajmer.</p>
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Established</div>
+          <div class="meta-value">2004</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Cuisine</div>
+          <div class="meta-value">World</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Mood</div>
+          <div class="meta-value">Wandering</div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-hero-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=90');">
+      <div class="brand-hero-floating">— a passport, plated</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="story-side">
+      <div class="label">— The Story</div>
+      <div class="title">Borders are smaller than menus.</div>
+    </div>
+    <div class="story-body">
+      <p>By 2004, Ajmer was already wandering. The same family that walked into Mango Masala for a thali was, on a different night, looking for something further away — a plate of pasta, a mezze board, a bowl of khao soi. And so, very quietly, Mango Curry opened next door.</p>
+      <p>The premise has not changed in twenty years. Each kitchen is run by a chef trained inside that tradition — pasta is rolled by hand, sauces are reduced over hours, the wok is kept screamingly hot. We do not Indianise what does not need Indianising. The cumin stays where it belongs.</p>
+      <p>Order like you are travelling. Start in Beirut. Pass through Naples. End in Bangkok. Or stay in one country and read the menu like a small, very careful novel.</p>
+    </div>
+  </div>
+
+  <!-- Featured Dishes -->
+  <div class="full-menu-featured">
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=85');"></div></div>
+      <div class="fm-label">— Italia</div>
+      <div class="fm-name">Penne <em>Arrabbiata</em></div>
+      <div class="fm-desc">Hand-tossed penne in a slow tomato sugo with chilli, garlic and a finishing rain of parmesan.</div>
+      <div class="fm-price">₹499</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=900&q=85');"></div></div>
+      <div class="fm-label">— Vietnam</div>
+      <div class="fm-name">Hanoi <em>Bowls</em></div>
+      <div class="fm-desc">Rice noodles, lemongrass tofu, herbs from the kitchen garden, a peanut sauce fifteen years in the making.</div>
+      <div class="fm-price">₹449</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&q=85');"></div></div>
+      <div class="fm-label">— Lebanon</div>
+      <div class="fm-name">Beirut <em>Mezze</em></div>
+      <div class="fm-desc">Hummus, mutabal, labneh, warm pita and olive oil older than the bread.</div>
+      <div class="fm-price">₹499</div>
+    </div>
+  </div>
+
+  <!-- Full Menu -->
+  <div class="full-menu-wrap">
+    <div class="full-menu-header">
+      <div>
+        <div style="font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem;font-weight:500;">— Full Menu</div>
+        <h2>Six countries, <em>one table</em></h2>
+      </div>
+      <div class="note">Veg &amp; Non-Veg<br/>Borderless Cuisine</div>
+    </div>
+
+    <div class="menu-tabs-bar">
+      <div class="menu-tabs-scroll" data-tabs="curry">
+        <button class="m-tab active" data-tab="c-veg">Veg Starters</button>
+        <button class="m-tab" data-tab="c-chi">Chinese</button>
+        <button class="m-tab" data-tab="c-cont">Continental</button>
+        <button class="m-tab" data-tab="c-siz">Sizzlers</button>
+        <button class="m-tab" data-tab="c-thali">Thalis</button>
+        <button class="m-tab" data-tab="c-nvstart">Non-Veg Starters</button>
+        <button class="m-tab" data-tab="c-chkn">Chicken</button>
+        <button class="m-tab" data-tab="c-mutton">Mutton &amp; Egg</button>
+        <button class="m-tab" data-tab="c-birya">Biryani</button>
+      </div>
+    </div>
+
+    <!-- Veg Starters -->
+    <div class="m-panel active" data-tab="c-veg">
+      <div class="m-cat">
+        <div class="m-cat-head">Soups<span class="m-cat-price-note">₹229 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Cream of Tomato · Veg. Sweet Corn · Hot &amp; Sour · Manchow · Veg. Clear Soup</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Starters &amp; <em>Snacks</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Tikka</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hara Bhara Kebab</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Spring Rolls / Crispy Veg Chilly Peppers</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Crispy Manchurian Balls with Hot Garlic Sauce</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Honey Chilly Potato</div><div class="m-desc">An evergreen favourite.</div></div><div class="m-price">₹449</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pao Bhaji / Bhel Puri</div></div><div class="m-price">₹299 / ₹269</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pakora Tokri / French Fries</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chole Bhature</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Bread (with or without Cheese)</div></div><div class="m-price">₹359</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Crispy Corn with Crackling Spinach</div></div><div class="m-price">₹419</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Paneer <em>Specials</em><span class="m-cat-price-note">₹499 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilly Paneer / Palak Paneer / Mutter Paneer</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Paneer Masala / Achari Paneer</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kadhai Paneer / Shahi Khoya Paneer</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Pasanda Mughlai</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Tikka Masala / Paneer Takatak Bhurji</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Mirchi Masala / Paneer Hungama<span class="m-badge sig">Signature</span></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Rajasthani <em>Speciality</em><span class="m-cat-price-note">₹499 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jaipuri Aloo Pyaz ki Sabzi</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rajasthani Gatte ki Sabzi / Veg. Jaipuri</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chinese -->
+    <div class="m-panel" data-tab="c-chi">
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese <em>Noodles</em><span class="m-cat-price-note">₹449 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Chowmein / Schezwan Noodles</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hot Garlic Noodles / Mushroom Chowmein</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hakka Noodles (with sauce or dry)</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Chopsuey (crispy fried noodles, tomato gravy)</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese <em>Rice</em><span class="m-cat-price-note">₹429 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Fried Rice / Schezwan Fried Rice</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Burnt Garlic Fried Rice / Mushroom Fried Rice</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese <em>Main Course</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Golden Chilly Potatoes / Honey Chilly Potato</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Manchurian / Spring Rolls / Chilly Paneer (dry)</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilly Paneer</div></div><div class="m-price">₹499</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilly Mushrooms / Crispy Veg Chilly Peppers</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Buddha's Delight<span class="m-badge sig">Chef</span></div></div><div class="m-price">₹529</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Laughing Buddha Delight</div></div><div class="m-price">₹529</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continental -->
+    <div class="m-panel" data-tab="c-cont">
+      <div class="m-cat">
+        <div class="m-cat-head">Continental <em>Veg.</em><span class="m-cat-price-note">₹499 · served with garlic bread</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Penne Pasta</div><div class="m-desc">In sauce of your choice: Cheese, Tomato or Pink.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Lasagna</div><div class="m-desc">Layers of pasta, fresh vegetables, mushrooms and tomato sauce baked with cheese.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Au-Gratin</div><div class="m-desc">Baked vegetables in white sauce topped with cheese.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cannelloni Florentine</div><div class="m-desc">Stuffed cannelloni baked on a bed of spinach with white sauce and cheese.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Baked Cheese Macaroni</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Continental <em>Non-Veg.</em><span class="m-cat-price-note">₹549</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Potato and Mutton Goulash<span class="m-badge nv">Non-Veg</span></div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Roasted Leg of Chicken with Brown Sauce<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">One succulent chicken leg roasted in the tandoor.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mama Mia<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Chicken in a cheese, garlic and herb sauce with spaghetti.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Penne Pasta<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">In sauce of your choice: Cheese, Tomato or Pink.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizzlers -->
+    <div class="m-panel" data-tab="c-siz">
+      <div class="m-cat">
+        <div class="m-cat-head">Sizzlers <em>Veg.</em><span class="m-cat-price-note">₹529 each · served with sautéed vegetables &amp; fries</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg Steak Sizzler</div><div class="m-desc">Stuffed tomato, stuffed capsicum, veg. cutlet with steak sauce.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Shaslik Sizzler</div><div class="m-desc">Butter garlic rice, golden fried paneer chunks with shaslik sauce.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chinese Sizzler</div><div class="m-desc">Veg. fried rice, veg. chowmein and chilly paneer together on a hot sizzler.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Golden Feast Sizzler</div><div class="m-desc">Roasted potatoes soaked with cheese and garlic sauce.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Italian Godfather Sizzler</div><div class="m-desc">Mafia macaroni loaded with cheese bullets.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Sizzlers <em>Non-Veg.</em><span class="m-cat-price-note">₹549 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chinese Chicken Sizzler<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Veg. chowmein, veg. fried rice with chilly chicken on a hot sizzler.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Shaslik<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Four golden chunks of chicken over a bed of fried rice with shaslik sauce.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pot Roasted Lamb Sizzler<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Tender roasted baby lamb in brown sauce with butter vegetables and garlic butter fried rice.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">BBQ Chicken Sizzler<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">One chicken tandoori leg with BBQ sauce.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thalis -->
+    <div class="m-panel" data-tab="c-thali">
+      <div class="m-cat">
+        <div class="m-cat-head">Thalis<span class="m-cat-price-note">includes ice cream</span></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Punjabi Thali</div><div class="m-desc">Paneer, veg, dal, pulao, raita, salad, 2 butter naan, ice cream.</div></div><div class="m-price">₹499</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Rajasthani Thali</div><div class="m-desc">Gatta Masala, Aloo Pyaz ki Sabji, Dal, Rice, Raita, Salad, Papad, 2 Missi Roti, Ice Cream.</div></div><div class="m-price">₹499</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Non-Veg Thali<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Chicken, Mutton, Dal, Rice, Salad, Papad, Raita, 2 Butter Naan, Ice Cream.</div></div><div class="m-price">₹649</div></div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Mini <em>Meals</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hyderabadi Biryani with Raita</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chowmein with Chilly Paneer</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Parantha with Raita</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Kulcha – Chola</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Malai Kofta / Laccha Parantha with Dal Makhani</div></div><div class="m-price">₹399</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Egg Fried Rice with Chicken Manchurian<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Chowmein with Chilly Chicken<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Qtr. Butter Chicken, Dal Makhani, 2 Naan<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹549</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Qtr. Chicken of Choice, 2 Butter Naan<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Qtr. Mutton of Choice, 2 Butter Naan<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-Veg Starters -->
+    <div class="m-panel" data-tab="c-nvstart">
+      <div class="m-cat">
+        <div class="m-cat-head">Chicken <em>Starters</em><span class="m-cat-price-note">Non-Veg</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Chicken</div></div><div class="m-price">H ₹449 · F ₹799</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Chicken Tikka</div></div><div class="m-price">H ₹449 · F ₹799</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Malai Tikka</div></div><div class="m-price">H ₹449 · F ₹799</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken 65</div><div class="m-desc">Sweet 'n' spicy.</div></div><div class="m-price">H ₹469 · F ₹799</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Red Pepper</div><div class="m-desc">Tandoori chicken sautéed in hot garlic sauce.</div></div><div class="m-price">H ₹469 · F ₹799</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Lollypop (Drums of Heaven)</div></div><div class="m-price">5 pcs · ₹549</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Basket of Crispy Chicken Crunch</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Spring Roll</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Seekh Kebab</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Momos (8 pcs)</div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Seafood &amp; <em>Mutton Starters</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Garlic Prawns (6 pcs)</div></div><div class="m-price">₹699</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Fish Tikka</div></div><div class="m-price">₹699</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilli Garlic Fish / Fish Fingers</div></div><div class="m-price">₹699</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Seekh Kebab / Mutton Fry</div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Egg<span class="m-cat-price-note">Non-Veg</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Egg Bhurji with Toast</div></div><div class="m-price">₹279</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Regular Masala Omelette with Toast</div></div><div class="m-price">₹279</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cheese Omelette with Toast</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Egg Curry / Egg Bhurji Masala</div></div><div class="m-price">₹399</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chicken Mains -->
+    <div class="m-panel" data-tab="c-chkn">
+      <div class="m-cat">
+        <div class="m-cat-head">Indian Chicken<span class="m-cat-price-note">Half ₹599 · Full ₹949</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Butter Chicken</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Curry / Kadai Chicken</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rhara Chicken</div><div class="m-desc">Chicken chunks cooked with chicken keema in mughlai gravy.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Tikka Masala</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Marantha</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese Chicken<span class="m-cat-price-note">Half ₹549 · Full ₹899</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilly Chicken / Chicken Manchurian</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Ginger Garlic Stir Fried Chicken</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese Chicken <em>Rice &amp; Noodles</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Fried Rice / Egg Fried Rice</div></div><div class="m-price">₹449</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Chowmein / Pan Fried Chicken Hakka Noodles</div></div><div class="m-price">₹469</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken American Chopsuey</div></div><div class="m-price">₹469</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Soups<span class="m-cat-price-note">₹249 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Cream of Chicken · Chicken Hot 'n' Sour · Sweet Corn Chicken · Chicken Manchow Soup</div>
+      </div>
+    </div>
+
+    <!-- Mutton & Egg -->
+    <div class="m-panel" data-tab="c-mutton">
+      <div class="m-cat">
+        <div class="m-cat-head">Mutton<span class="m-cat-price-note">Half (4 pcs) ₹599 · Full (8 pcs) ₹949</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Curry / Mutton Roganjosh</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Marantha / Handi Meat</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Saag Mutton</div><div class="m-desc">Mutton in an aromatic palak and methi gravy with cream.</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Boti &amp; Keema Curry</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Keema Matar Masala</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Laal Maas / Bhuna Gosht</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Non-Veg <em>Breads</em><span class="m-cat-price-note">₹229 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Keema Parantha · Keema Naan · Keema Kulcha</div>
+      </div>
+    </div>
+
+    <!-- Biryani -->
+    <div class="m-panel" data-tab="c-birya">
+      <div class="m-cat">
+        <div class="m-cat-head">Biryani<span class="m-cat-price-note">served with biryani gravy</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Biryani — ¼ Chicken<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹599</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Biryani — ½ Chicken<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹849</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Biryani / Hyderabadi Biryani</div></div><div class="m-price">₹399</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Biryani — Single (3 pcs)<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹599</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mutton Biryani — Regular (6 pcs)<span class="m-badge nv">Non-Veg</span></div></div><div class="m-price">₹849</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Raita (Veg. / Boondi / Pineapple)</div></div><div class="m-price">₹249</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="atmosphere">
+    <div class="atmosphere-header">
+      <div class="kicker">— Around the Room</div>
+      <h2>Six countries on every table.</h2>
+    </div>
+    <div class="gallery-strip">
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=900&q=85');"></div>
+      <!-- duplicate -->
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=900&q=85');"></div>
+    </div>
+  </div>
+
+  <div class="visit">
+    <div class="ornament">passport in your pocket</div>
+    <h2>Come hungry. <em>Travel</em> light.</h2>
+    <p>Larger groups, build a journey from the menu. Smaller ones, the chef will quietly do it for you.</p>
+    <div class="visit-actions">
+      <a class="btn btn-primary" href="tel:+910000000000">Reserve a Table</a>
+      <button class="btn btn-ghost" data-nav="home">Back to the Four</button>
+    </div>
+  </div>
+
+  <footer class="site-footer"></footer>
+</section>
+
+<!-- =============== BAKERY PAGE =============== -->
+<section class="page brand" id="page-bakery">
+  <button class="back" data-nav="home">Back</button>
+
+  <div class="brand-hero">
+    <div class="brand-hero-text">
+      <div class="kicker">— Chapter Three · Bakery</div>
+      <h1 class="title">Cake<br/><em>Craft</em></h1>
+      <p class="lede">The oldest of the four — and the warmest. A patisserie and bakery that has been quietly setting the tone of Ajmer's birthdays, weddings and slow Sunday mornings since 1997.</p>
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Established</div>
+          <div class="meta-value">1997</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">House</div>
+          <div class="meta-value">The Earth Bakery</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Hours</div>
+          <div class="meta-value">From dawn</div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-hero-image" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1600&q=90');">
+      <div class="brand-hero-floating">— butter, sugar, time</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="story-side">
+      <div class="label">— The Story</div>
+      <div class="title">Where the family began.</div>
+    </div>
+    <div class="story-body">
+      <p>Before there was a restaurant, there was a bakery. Cake Craft opened its doors in 1997 — the year a small family decided to put butter, sugar and a stone oven in the middle of Ajmer and see what would happen. The rest of Mango Masala grew, slowly, around it.</p>
+      <p>Twenty-six years later, we still mix doughs by hand, cream butter the long way, and refuse to use anything from a pre-mix tin. The croissants take three days. The chocolate is tempered, never melted. The sourdough has a starter that is older than most of our staff.</p>
+      <p>The Earth Bakery, the second face of this kitchen, leans into bread — wholegrain, slow-rise, deeply imperfect, and on the counter only when it is truly ready. Come early. Come often.</p>
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <div class="full-menu-featured">
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=85');"></div></div>
+      <div class="fm-label">— Signature</div>
+      <div class="fm-name">Dark Chocolate <em>Truffle</em></div>
+      <div class="fm-desc">Three layers of bitter chocolate sponge, single-origin ganache, thin lacquer of dark chocolate.</div>
+      <div class="fm-price">₹109 / pound ₹649</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=85');"></div></div>
+      <div class="fm-label">— Three-Day Croissant</div>
+      <div class="fm-name">Almond <em>Croissant</em></div>
+      <div class="fm-desc">Filled with frangipane and toasted slivered almonds. Best inhaled at 8 am.</div>
+      <div class="fm-price">From ₹89</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=85');"></div></div>
+      <div class="fm-label">— Bestseller</div>
+      <div class="fm-name">Red Velvet <em>Cake</em></div>
+      <div class="fm-desc">Buttermilk crumb, cream-cheese frosting between sweet and salt. Built for birthdays, eaten any day.</div>
+      <div class="fm-price">₹129 / pound ₹699</div>
+    </div>
+  </div>
+
+  <!-- Full Menu -->
+  <div class="full-menu-wrap">
+    <div class="full-menu-header">
+      <div>
+        <div style="font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem;font-weight:500;">— Full Menu</div>
+        <h2>From the <em>counter</em></h2>
+      </div>
+      <div class="note">Baked daily from 6 am<br/>Bulk orders welcome</div>
+    </div>
+
+    <div class="menu-tabs-bar">
+      <div class="menu-tabs-scroll" data-tabs="bakery">
+        <button class="m-tab active" data-tab="b-past">Pastries</button>
+        <button class="m-tab" data-tab="b-cake">Cakes</button>
+        <button class="m-tab" data-tab="b-tea">Tea Cakes</button>
+        <button class="m-tab" data-tab="b-egg">Eggless Cream Cakes</button>
+        <button class="m-tab" data-tab="b-cook">Cookies</button>
+        <button class="m-tab" data-tab="b-bread">Breads</button>
+        <button class="m-tab" data-tab="b-sundae">Sundaes &amp; Ice Cream</button>
+        <button class="m-tab" data-tab="b-sweet">Desserts</button>
+      </div>
+    </div>
+
+    <!-- Pastries -->
+    <div class="m-panel active" data-tab="b-past">
+      <div class="m-cat">
+        <div class="m-cat-head">Fresh Cream <em>Pastries</em><span class="m-cat-price-note">per pastry</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pineapple</div></div><div class="m-price">₹89</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Black Forest</div></div><div class="m-price">₹89</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Truffle</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Red Velvet</div></div><div class="m-price">₹129</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Death By Chocolate<span class="m-badge sig">Chef</span></div></div><div class="m-price">₹159</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mud Pie</div></div><div class="m-price">₹129</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Vegan Chocolate Truffle</div></div><div class="m-price">₹129</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Biscoff Cheese Pastry</div></div><div class="m-price">₹255</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cakes (Cream) -->
+    <div class="m-panel" data-tab="b-cake">
+      <div class="m-cat">
+        <div class="m-cat-head">Cakes from <em>Cake Craft</em><span class="m-cat-price-note">per pastry · per pound</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pineapple / Black Forest</div></div><div class="m-price">₹89 / ₹599</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Truffle</div></div><div class="m-price">₹109 / ₹649</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fresh Fruit</div></div><div class="m-price">₹649/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fresh Mango (Seasonal) / Red Velvet</div></div><div class="m-price">₹129 / ₹699</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Biscoff Cake<span class="m-badge sig">Special</span></div></div><div class="m-price">₹899/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hazel Crunch / Oreo / Lace Truffle</div></div><div class="m-price">₹649–₹699/lb</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">KitKat Cake<span class="m-badge sig">Showstopper</span></div></div><div class="m-price">₹849/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mud Pie / White Forest</div></div><div class="m-price">₹749 / ₹699/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Death By Chocolate</div></div><div class="m-price">₹159 / ₹849</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Belgian Chocolate</div></div><div class="m-price">₹999/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pinata Hammer Cake</div></div><div class="m-price">₹899/lb</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cake Bouquet Pineapple</div><div class="m-desc">Garnished with fresh flowers.</div></div><div class="m-price">₹449 / ₹749</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cake Bouquet Choc Truffle</div><div class="m-desc">Garnished with fresh flowers.</div></div><div class="m-price">₹499 / ₹849</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tea Cakes -->
+    <div class="m-panel" data-tab="b-tea">
+      <div class="m-cat">
+        <div class="m-cat-head">Cake Without Cream <em>(Tea Cakes)</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Caramel / Toffee Sauce Cake (slice)</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Banana Cake Slice</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Banana Chocolate Cake Slice</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Whole Wheat Carrot Cake</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Eggless Fruit Cake (200gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Eggless Choco Chip Cake (200gm)</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Eggless Banana Muffin / Choco Muffin</div></div><div class="m-price">₹85</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fruit Cake Big (150gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Choco Chip Cake Big (150gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Walnut Cake Big (150gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Eggless Fruit / Chocolate Slice Cake</div></div><div class="m-price">₹49</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Walnut Brownie (70gm)</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Muffins — Fruit / Chocolate / Walnut (30gm)</div></div><div class="m-price">₹30</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Plum Cake (Seasonal)</div><div class="m-desc">70gm · 125gm · 225gm · 380gm</div></div><div class="m-price">As marked</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eggless Cream Cakes -->
+    <div class="m-panel" data-tab="b-egg">
+      <div class="m-cat">
+        <div class="m-cat-head">Eggless Cream <em>Cakes</em><span class="m-cat-price-note">Pastry · Mini · Pound</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Vanilla Choco Chips / Black Forest / Pineapple</div></div><div class="m-price">₹89 · ₹349 · ₹599</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Marvel / Butter Scotch</div></div><div class="m-price">₹89 · ₹349 · ₹649</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Red Velvet</div></div><div class="m-price">₹129 · ₹399 · ₹699</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Choco Nougat / Choco Strawberry</div></div><div class="m-price">₹89 · ₹349 · ₹649</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Italian Chocolate / Italian Cappuccino</div></div><div class="m-price">₹89 · ₹349 · ₹649</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fresh Mango (Seasonal)</div></div><div class="m-price">₹129 · ₹399 · ₹699</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Coffee / Choc Truffle</div></div><div class="m-price">₹89 · ₹349 · ₹649</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookies -->
+    <div class="m-panel" data-tab="b-cook">
+      <div class="m-cat">
+        <div class="m-cat-head"><em>Cookies</em> &amp; Biscuits</div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Coconut (300gm)</div></div><div class="m-price">₹169</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Naankhatai / Rose Naankhatai (250gm)</div></div><div class="m-price">₹169–₹189</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jeera Cookies (350gm)</div></div><div class="m-price">₹169</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Cookies (300gm)</div></div><div class="m-price">₹189</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Choco Chips (350gm)</div></div><div class="m-price">₹189</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kaju Coconut / Almond Coconut (300gm)</div></div><div class="m-price">₹199</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Italian Choco-Chip / Almond (200gm)</div></div><div class="m-price">₹199</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Whole Wheat Desi Ghee Cookies (350gm)</div></div><div class="m-price">₹209</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Oats Cookies (250gm)</div></div><div class="m-price">₹209</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Coffee Cookies (300gm)</div></div><div class="m-price">₹189</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tai Khari / Sweet Khari / Masala Khari (250gm)</div></div><div class="m-price">₹169–₹189</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Gluten Free Cookie — Almond / Choc Chip (180gm)</div></div><div class="m-price">₹209</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Sugarfree Kaju / Date Cookies (250gm)</div></div><div class="m-price">₹269</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mini Cookie Jars — Coconut / Naankhatai / Jeera (200gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dry Fruit Jars (200gm)</div></div><div class="m-price">₹249</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breads -->
+    <div class="m-panel" data-tab="b-bread">
+      <div class="m-cat">
+        <div class="m-cat-head">The Earth Bakery <em>Breads</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Regular Bread (500gm)</div></div><div class="m-price">₹55</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Half Sandwich Bread Jumbo Slice (500gm)</div></div><div class="m-price">₹65</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jumbo Sandwich Bread (1000gm)</div></div><div class="m-price">₹169</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Whole Wheat Bread — without colour (500gm)</div></div><div class="m-price">₹65</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Half Whole Wheat Bread (300gm)</div></div><div class="m-price">₹50</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hi-Fiber Bread / Oats Bread (500gm)</div></div><div class="m-price">₹75</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Ragi Bread — Half / Full</div></div><div class="m-price">₹49 / ₹79</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Bread (4 in a pack, 450gm)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Loaf (200gm) / Garlic Toast (160gm)</div></div><div class="m-price">₹129 / ₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Whole Wheat Loaf (200gm)</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pao (Pack of 6, 500gm)</div></div><div class="m-price">₹89</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hot Dog (Pack of 4, 300gm)</div></div><div class="m-price">₹89</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Kulcha (Pack of 4, 120gm)</div></div><div class="m-price">₹89</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pizza Base (Pack of 2) / Jumbo Thin Crust Base</div></div><div class="m-price">₹69 / ₹129</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Counter <em>Snacks</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg Aloo Patties / Paneer Puff Patties</div></div><div class="m-price">₹35 / ₹69</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chicken Puff Patties / Mutton Patties</div></div><div class="m-price">₹85</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Peas Roll</div></div><div class="m-price">₹109</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Baked Paneer Cheese Corn Calzone Slice</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chinese Samosa</div></div><div class="m-price">₹69</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tex Max / Corn Spinach / Paneer Tikka / Chicken Tikka Subway</div></div><div class="m-price">₹159</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sundaes -->
+    <div class="m-panel" data-tab="b-sundae">
+      <div class="m-cat">
+        <div class="m-cat-head">Ice Cream <em>Sundaes</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Single Sundae</div><div class="m-desc">Little Sundae · Love Dip · Sundance · Pina Colada · Dark Chocochips · Fruit Tree · Black Forest · Fallooda</div></div><div class="m-price">₹269</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Double Sundae</div><div class="m-desc">Naughty Nuts · Funny Bunny · Lady Police · Orange Forage · Mango Waltz · Fruit Bonanza · Pineapple Passion · After Eight</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Triple Sundae</div><div class="m-desc">Hot Chocolate Fudge · Mango Masala · Arabian Nights · Fruit Orchard · Earthquake · Toppler</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Designer Sundaes</div><div class="m-desc">Banana Split · Bulls Eye (truffle cake on a hot sizzler)</div></div><div class="m-price">₹399</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Ice Cream <em>Scoops</em><span class="m-cat-price-note">Double scoop · Cup or Cone · MRP</span></div>
+        <div class="m-desc" style="opacity:.8;line-height:1.8;">Vanilla · Strawberry · Pineapple · Butter Scotch · Orange Tang · Chocolate · Coffee Chocochips · Mango · Anjeer · Kaju Draksh · Kesar Pista · Raj Bhog · Black Currant · Fruit Cocktail · Fresh Strawberry — and many more at the parlour!</div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="m-panel" data-tab="b-sweet">
+      <div class="m-cat">
+        <div class="m-cat-head">Desserts &amp; <em>Sweets</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Gulab Jamun (2 pcs)</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rum Ball</div></div><div class="m-price">₹80</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Truffle Pudding</div></div><div class="m-price">₹95</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Mousse in Edible Chocolate Cup</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chocolate Mousse</div></div><div class="m-price">₹99</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mini Pinata Gems</div></div><div class="m-price">₹109</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Doughnut — Rainbow / Double Chocolate / Chocolate Coated</div></div><div class="m-price">Mini ₹45 · Big ₹85</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cheese Cake Blue Berry (slice)</div></div><div class="m-price">₹139</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Lemon Tart / Chocolate Tart</div></div><div class="m-price">₹59</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Swiss Roll</div></div><div class="m-price">₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Cream Roll (Choc / Strawberry / Vanilla)</div></div><div class="m-price">₹69</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Walnut / Double Choc / Chocochip Brownie</div></div><div class="m-price">₹99–₹109</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hot Chocolate Lava Cake / Apple Pie</div></div><div class="m-price">₹109</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="atmosphere">
+    <div class="atmosphere-header">
+      <div class="kicker">— The Counter</div>
+      <h2>Mornings at Cake Craft.</h2>
+    </div>
+    <div class="gallery-strip">
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=900&q=85');"></div>
+      <!-- duplicate -->
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=900&q=85');"></div>
+    </div>
+  </div>
+
+  <div class="visit">
+    <div class="ornament">made the same morning</div>
+    <h2>For birthdays, mornings, <em>and</em> Sundays.</h2>
+    <p>Custom celebration cakes need 48 hours' notice. Everything else is on the counter, freshly out of the oven.</p>
+    <div class="visit-actions">
+      <a class="btn btn-primary" href="tel:+910000000000">Order a Cake</a>
+      <button class="btn btn-ghost" data-nav="home">Back to the Four</button>
+    </div>
+  </div>
+
+  <footer class="site-footer"></footer>
+</section>
+
+<!-- =============== PIZZA PAGE =============== -->
+<section class="page brand" id="page-pizza">
+  <button class="back" data-nav="home">Back</button>
+
+  <div class="brand-hero">
+    <div class="brand-hero-text">
+      <div class="kicker">— Chapter Four · Pizza</div>
+      <h1 class="title">Thin<br/><em>Crust</em></h1>
+      <p class="lede">A flour-and-fire kitchen built around a single, slightly obsessive idea — the best, thinnest pizza in town. We've been holding that opinion since 1998.</p>
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-label">Established</div>
+          <div class="meta-value">1998</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Style</div>
+          <div class="meta-value">Thin · Crisp</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Service</div>
+          <div class="meta-value">All Day</div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-hero-image" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600&q=90');">
+      <div class="brand-hero-floating">— flour, fire, ferment</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="story-side">
+      <div class="label">— The Story</div>
+      <div class="title">A small obsession with crust.</div>
+    </div>
+    <div class="story-body">
+      <p>Most kitchens make a pizza. We make crust. Everything else — the sauce, the cheese, the slow-roasted topping that took three hours to caramelise — is in service of the dough underneath. That is the founding belief of this kitchen, and it has not moved since 1998.</p>
+      <p>The dough cold-ferments for forty-eight hours. The base is rolled, never tossed for show, until it is almost translucent. Each pizza spends ninety seconds against the stone, no longer, no shorter. The result is a crust that is thin, crisp at the rim, with a small chew at the centre — the kind that holds a slice up without folding under it.</p>
+      <p>Order it Margherita and you'll understand what the kitchen can do. Order it Burrata and you'll understand why we keep the menu small.</p>
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <div class="full-menu-featured">
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=85');"></div></div>
+      <div class="fm-label">— The Truth Test</div>
+      <div class="fm-name">Classic Cheese <em>Margherita</em></div>
+      <div class="fm-desc">San Marzano tomato, fior di latte, basil. The kitchen's truth-test. 48-hour dough, 90 seconds on stone.</div>
+      <div class="fm-price">Med ₹399 · Jumbo ₹549</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=900&q=85');"></div></div>
+      <div class="fm-label">— House Favourite</div>
+      <div class="fm-name">Peppy <em>Paneer</em></div>
+      <div class="fm-desc">Paneer tikka, coriander and green chillies. Our most ordered veg pizza.</div>
+      <div class="fm-price">Med ₹429 · Jumbo ₹599</div>
+    </div>
+    <div class="fm-card">
+      <div class="fm-card-img"><div class="fm-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85');"></div></div>
+      <div class="fm-label">— The Big One</div>
+      <div class="fm-name">Veg <em>Extravaganza</em></div>
+      <div class="fm-desc">Onions, capsicum, mushrooms, golden corn, fresh tomato, black olives and extra cheese.</div>
+      <div class="fm-price">Med ₹449 · Jumbo ₹599</div>
+    </div>
+  </div>
+
+  <!-- Full Menu -->
+  <div class="full-menu-wrap">
+    <div class="full-menu-header">
+      <div>
+        <div style="font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem;font-weight:500;">— Full Menu</div>
+        <h2>Very Thin Crust, <em>Freshly Rolled</em></h2>
+      </div>
+      <div class="note">8" Personal (4 slices) · 11" Jumbo (8 slices)<br/>48-hour cold ferment · Stone-baked</div>
+    </div>
+
+    <div class="menu-tabs-bar">
+      <div class="menu-tabs-scroll" data-tabs="pizza">
+        <button class="m-tab active" data-tab="p-veg">Veg Pizzas</button>
+        <button class="m-tab" data-tab="p-nv">Non-Veg Pizzas</button>
+        <button class="m-tab" data-tab="p-burg">Burgers &amp; Bites</button>
+        <button class="m-tab" data-tab="p-chi">Chinese Snacks</button>
+        <button class="m-tab" data-tab="p-siz">Sizzlers &amp; Meals</button>
+        <button class="m-tab" data-tab="p-main">Mains</button>
+      </div>
+    </div>
+
+    <!-- Veg Pizzas -->
+    <div class="m-panel active" data-tab="p-veg">
+      <div class="m-cat">
+        <div class="m-cat-head">Veg <em>Pizzas</em><span class="m-cat-price-note">8" Personal · 11" Jumbo</span></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Classic Cheese / Cheese Garlic / Cheese Tomato Margherita</div></div><div class="m-price">₹399 · ₹549</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Onion Capsicum (C.O.C) / Onion Tomato Capsicum (O.T.C)</div></div><div class="m-price">₹399 · ₹549</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Mushroom Magic</div></div><div class="m-price">₹429 · ₹549</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Barbecued Paneer Pizza / Teekha Paneer<span class="m-badge spicy">Spicy</span></div></div><div class="m-price">₹429 · ₹549</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Pizza Indiana</div><div class="m-desc">Cheese, onion, tomato, garlic, green chilly.</div></div><div class="m-price">₹429 · ₹569</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Pizza<span class="m-badge sig">Indian BBQ</span></div></div><div class="m-price">₹429 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Corn Feast</div><div class="m-desc">Corn, capsicum, spring onion and pineapple.</div></div><div class="m-price">₹429 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Peppy Paneer<span class="m-badge sig">Favourite</span></div><div class="m-desc">Paneer tikka, coriander and green chillies.</div></div><div class="m-price">₹429 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Indian Spice</div><div class="m-desc">Paneer, tomato, onion and green chillies.</div></div><div class="m-price">₹429 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">5 Peppers Pizza (without cheese)</div></div><div class="m-price">₹449 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Woodcutter's Pizza</div><div class="m-desc">Spinach with roasted garlic, mushrooms with onions.</div></div><div class="m-price">₹449 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Exotica</div><div class="m-desc">Capsicum with babycorn, mushrooms and black olives.</div></div><div class="m-price">₹449 · ₹599</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Veg Extravaganza<span class="m-badge sig">The Big One</span></div><div class="m-desc">Onions, capsicum, mushrooms, golden corn, fresh tomato, black olives and extra cheese.</div></div><div class="m-price">₹449 · ₹599</div></div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Extra <em>Toppings</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mustard · Chilly Flakes · Tomato · Spinach · Onion · Capsicum</div></div><div class="m-price">₹69 each</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mushroom · Pineapple · Roasted Garlic · Barbecued Paneer</div></div><div class="m-price">₹79 each</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Extra Cheese · Olives · Babycorn · Jalapeños</div></div><div class="m-price">₹99 each</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-Veg Pizzas -->
+    <div class="m-panel" data-tab="p-nv">
+      <div class="m-cat">
+        <div class="m-cat-head">Non-Veg <em>Pizzas</em><span class="m-cat-price-note">8" Medium · 11" Jumbo</span></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Chicken Fundoo<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Cheese and chicken.</div></div><div class="m-price">₹429 · ₹539</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Chicken n Cheese-O-Holic<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">With lotsa cheese and chicken.</div></div><div class="m-price">₹439 · ₹549</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Murg Balle Balle<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Tandoori chicken with grilled peppers and cheese.</div></div><div class="m-price">₹449 · ₹559</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Chicken Wave<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">BBQ chicken tikka with lots of cheese.</div></div><div class="m-price">₹459 · ₹569</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Chicken Exotica<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Chicken chunks, babycorn and olives.</div></div><div class="m-price">₹469 · ₹579</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Glutton Mutton<span class="m-badge nv">Non-Veg</span></div><div class="m-desc">Mutton keema with onion, capsicum, green chillies.</div></div><div class="m-price">₹469 · ₹579</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Vesuvius<span class="m-badge nv">Non-Veg</span><span class="m-badge spicy">Fiery</span></div><div class="m-desc">Minced lamb that melts in the mouth, light golden onions and fiery Tabasco.</div></div><div class="m-price">₹479 · ₹589</div></div>
+        <div class="m-row"><div class="m-info"><div class="m-name">Meatzza<span class="m-badge nv">Non-Veg</span><span class="m-badge sig">The Works</span></div><div class="m-desc">Smoked chicken, BBQ chicken, lamb chunks, keema masala with cheese.</div></div><div class="m-price">₹549 · ₹639</div></div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Extra <em>Toppings</em></div>
+        <div class="m-2col">
+          <div><div class="m-row"><div class="m-info"><div class="m-name">Onion / Capsicum / Chilly Flakes / Tomato / Garlic</div></div><div class="m-price">₹69 each</div></div></div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Mushrooms / Babycorn / Extra Cheese / Pineapple / Golden Corn</div></div><div class="m-price">₹99 each</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Extra Chicken / Extra Mutton</div></div><div class="m-price">₹149</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Burgers & Bites -->
+    <div class="m-panel" data-tab="p-burg">
+      <div class="m-cat">
+        <div class="m-cat-head">Burgers<span class="m-cat-price-note">served with wafers / french fries</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Indiana Burger</div><div class="m-desc">Green chutney, cutlet, onion and tomato.</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Meltaway Burger</div><div class="m-desc">Vegetable burger topped with melted cheese.</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Burger (without Cheese)</div></div><div class="m-price">₹339</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Grilled Veg. Sandwich (with or without cheese)</div></div><div class="m-price">₹369</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Grilled Club Sandwich (with Aloo Tikki)</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chatpata Aloo / Paneer Patakha Hot Dog</div></div><div class="m-price">₹369</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Tasty <em>Bites</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pao Bhaji / Bhel Puri / Chinese Bhel</div></div><div class="m-price">₹299 / ₹269 / ₹329</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Pakora Tokri / French Fries</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chole Bhature</div></div><div class="m-price">₹349</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Bread (with or without Cheese)</div></div><div class="m-price">₹359</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg. Cutlets with Chips</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tikki Chola / Crispy Corn with Crackling Spinach</div></div><div class="m-price">₹329 / ₹419</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chinese Snacks -->
+    <div class="m-panel" data-tab="p-chi">
+      <div class="m-cat">
+        <div class="m-cat-head">Chinese <em>Snacks</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chowmein</div></div><div class="m-price">₹469</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chilli Fingers / Spring Rolls</div></div><div class="m-price">₹449</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Crispy Veg. Chilly Peppers</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Fried Manchurian Balls with Hot Garlic Sauce</div></div><div class="m-price">₹449</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizzlers & Meals -->
+    <div class="m-panel" data-tab="p-siz">
+      <div class="m-cat">
+        <div class="m-cat-head">Sizzlers<span class="m-cat-price-note">₹529 each</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Veg Steak Sizzler</div><div class="m-desc">Stuffed tomato and capsicum, cutlet with steak sauce.</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Shaslik Sizzler</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chinese Sizzler</div></div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Golden Feast Sizzler</div></div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Italian Godfather Sizzler</div><div class="m-desc">Mafia macaroni loaded with cheese bullets.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Mini <em>Meals</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Hyderabadi Biryani with Raita</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Chowmein with Chilly Paneer / Veg. Fried Rice with Manchurian</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Aloo Parantha with Raita</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Kulcha – Chola</div></div><div class="m-price">₹299</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Malai Kofta with One Butter Naan</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dal Tadka with Jeera Pulao and Missi Roti</div></div><div class="m-price">₹359</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Punjabi Thali</div><div class="m-desc">Paneer, Chana Masala, Dal, Pulao, Raita, 2 butter naan, Ice Cream.</div></div><div class="m-price">₹499</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Rajasthani Thali</div><div class="m-desc">Gatta Masala, Aloo Pyaz, Dal, Jeera Rice, Raita, 2 Missi Roti, Ice Cream.</div></div><div class="m-price">₹499</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mains -->
+    <div class="m-panel" data-tab="p-main">
+      <div class="m-cat">
+        <div class="m-cat-head">Starters<span class="m-cat-price-note">Veg</span></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Tikka / Hara Bhara Kebab</div></div><div class="m-price">₹449 / ₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Honey Chilly Potato (Evergreen Favourite)</div></div><div class="m-price">₹449</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Crispy Veg Chilly Peppers / Manchurian Balls</div></div><div class="m-price">₹449</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala Papad (fried / roasted)</div></div><div class="m-price">₹99</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Soups<span class="m-cat-price-note">₹229 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Cream of Tomato · Veg. Sweet Corn · Hot &amp; Sour · Manchow · Veg. Clear Soup</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Paneer <em>Specials</em><span class="m-cat-price-note">₹499 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Chilly Paneer · Palak Paneer · Mutter Paneer · Achari Paneer · Butter Paneer Masala · Kadhai Paneer · Paneer Tikka Masala · Paneer Takatak Bhurji · Shahi Khoya Paneer · Paneer Pasanda Mughlai · Paneer Mirchi Masala</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Chef's <em>Specials</em><span class="m-cat-price-note">₹529 each</span></div>
+        <div class="m-desc" style="opacity:.8;">Babycorn Makka Malai Palak · Methi Mutter Mushroom · Masala Mushroom Matar · Paneer Hungama (Signature) · Kaju Curry · Navratan Korma</div>
+      </div>
+      <div class="m-cat">
+        <div class="m-cat-head">Dals · Rice · <em>Breads</em></div>
+        <div class="m-2col">
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Dal Tadka / Dal Makhani</div></div><div class="m-price">₹349</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Jeera Pulao / Mix Veg. Pulao</div></div><div class="m-price">₹299</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Masala / Kashmiri / Hyderabadi Biryani</div></div><div class="m-price">₹399</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Steamed Rice</div></div><div class="m-price">₹179</div></div>
+          </div>
+          <div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Tandoori Roti / Butter Roti</div></div><div class="m-price">₹29 / ₹39</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Plain Naan / Butter Naan</div></div><div class="m-price">₹79 / ₹129</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Garlic Naan / Cheese Naan / Laccha Parantha</div></div><div class="m-price">₹159</div></div>
+            <div class="m-row"><div class="m-info"><div class="m-name">Paneer Kulcha / Masala Kulcha / Stuffed Naan</div></div><div class="m-price">₹159</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="atmosphere">
+    <div class="atmosphere-header">
+      <div class="kicker">— The Stone</div>
+      <h2>Ninety seconds at four-fifty.</h2>
+    </div>
+    <div class="gallery-strip">
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900&q=85');"></div>
+      <!-- duplicate -->
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=900&q=85');"></div>
+      <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900&q=85');"></div>
+    </div>
+  </div>
+
+  <div class="visit">
+    <div class="ornament">flour, fire, ninety seconds</div>
+    <h2>Pull up a chair. <em>Order</em> a pie.</h2>
+    <p>The kitchen serves all day. Lunch, late lunch, that strange hour at four, dinner, and the slow last slice at eleven.</p>
+    <div class="visit-actions">
+      <a class="btn btn-primary" href="tel:+910000000000">Order Now</a>
+      <button class="btn btn-ghost" data-nav="home">Back to the Four</button>
+    </div>
+  </div>
+
+  <footer class="site-footer"></footer>
+</section>
+
+<!-- =============== ABOUT PAGE =============== -->
+<section class="page brand" id="page-about">
+  <button class="back" data-nav="home">Back</button>
+
+  <div class="about-hero">
+    <div class="kicker">— The Family Behind the Food</div>
+    <h1>About <em>Mango Masala</em></h1>
+    <p class="sub">A premier family restaurant proudly serving Ajmer and beyond since 1998 — where bold flavour meets warm ambiance.</p>
+  </div>
+
+  <div class="about-intro" style="background: var(--paper);">
+    <div class="about-intro-side">
+      <div class="label">— Our Story</div>
+      <div class="big-year">1997</div>
+    </div>
+    <div class="about-intro-body">
+      <p>Mango Masala is a premier and authentic family restaurant that has been proudly serving the Ajmer area and beyond since 1998. Before there was a restaurant, there was a bakery. Cake Craft opened its doors in 1997 — the year a small family decided to put butter, sugar and a stone oven in the middle of Ajmer and see what would happen.</p>
+      <p>Since then, our mission has been to provide high-quality food for all those who wish to combine a fun and enjoyable ambiance with skillful cooking into one extraordinary dining experience. The rest of Mango Masala grew slowly, warmly, around that original oven.</p>
+      <p>Today, Mango Masala is the happening family restaurant where locals go to dine, celebrate and socialise. Our menu features dishes assembled from the freshest ingredients, sure to bring bold and inspiring flavour into your life. Four kitchens, one family — and a quarter-century of love for this city.</p>
+    </div>
+  </div>
+
+  <div style="background: var(--paper); padding: 0 5rem 7rem; max-width: 1400px; margin: 0 auto;">
+    <img
+      src="https://static.wixstatic.com/media/b2ebe4_eb7e528285a24546831ae061d3188cbd%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/b2ebe4_eb7e528285a24546831ae061d3188cbd%7Emv2.jpg"
+      alt="Mango Masala Restaurant"
+      style="width:100%; aspect-ratio:16/7; object-fit:cover; border-radius:4px; filter:saturate(1.05);"
+      onerror="this.style.display='none';"
+    />
+  </div>
+
+  <div class="about-awards" style="background: var(--forest);">
+    <div class="about-awards-header">
+      <div class="kicker">— Recognition</div>
+      <h2>Awards &amp; Achievements</h2>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">★</div>
+        <div class="award-title">Certificate of Excellence</div>
+        <div class="award-sub">TripAdvisor · 2023</div>
+        <div class="award-desc">Recognised year after year for consistent excellence in hospitality and dining.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">✦</div>
+        <div class="award-title">Travellers' Choice</div>
+        <div class="award-sub">TripAdvisor · 2020</div>
+        <div class="award-desc">Ranked in the top 10% of restaurants worldwide by international travellers.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">♦</div>
+        <div class="award-title">Ajmer's Most Loved</div>
+        <div class="award-sub">Since 1998</div>
+        <div class="award-desc">Consistently rated the city's most beloved family dining destination for over two decades.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--paper);">
+    <div class="about-timeline">
+      <div class="about-timeline-header">
+        <div class="kicker">— A Quarter Century</div>
+        <h2>How we grew</h2>
+      </div>
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-year">1997</div>
+          <div class="timeline-content">
+            <h3>Cake Craft <em>&amp; The Earth Bakery</em></h3>
+            <p>Where it all began. A family, a stone oven, and a belief that Ajmer deserved the finest handmade pastries and bread. The croissants take three days. They always have.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1998</div>
+          <div class="timeline-content">
+            <h3>Mango Masala <em>Pure Veg</em></h3>
+            <p>The flagship restaurant opens. A vegetarian kitchen rooted in Rajasthan, built around the idea that Indian vegetarian food deserved world-class technique and theatre.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1998</div>
+          <div class="timeline-content">
+            <h3>Thin Crust <em>Pizza</em></h3>
+            <p>A flour-and-fire kitchen built around one slightly obsessive idea — the best, thinnest pizza in town. 48-hour cold ferment, stone-baked in ninety seconds.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2004</div>
+          <div class="timeline-content">
+            <h3>Mango Curry <em>World Food</em></h3>
+            <p>A passport in a single dining room. Italian, Mexican, Lebanese, Pan-Asian — twenty years of borderless cooking under one roof in the heart of Ajmer.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-content">
+            <h3>Travellers' Choice <em>Award</em></h3>
+            <p>Recognised by TripAdvisor as being in the top 10% of restaurants worldwide — a testament to the loyalty of Ajmer's families and visiting travellers alike.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-content">
+            <h3>Certificate of Excellence <em>Again</em></h3>
+            <p>TripAdvisor's Certificate of Excellence, received year after year. The kitchen has not stopped moving since 1997.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-cta">
+    <div class="ornament">a table is always waiting</div>
+    <h2>Come hungry. <em>Leave</em> happy.</h2>
+    <p>The kitchen is open all day. Walk-ins welcome. A quiet table is easier to find with a phone call.</p>
+    <div class="visit-actions">
+      <a class="btn btn-primary" href="tel:+919413100323">+91 94131 00323</a>
+      <button class="btn btn-ghost" data-nav="home">Back to the Four</button>
+    </div>
+  </div>
+
+  <footer class="site-footer"></footer>
+</section>
+
+<!-- =============== JS =============== -->
+<script>
+  // ===== Menu tab switching (scoped to parent) =====
+  document.querySelectorAll('.menu-tabs-scroll').forEach(bar => {
+    bar.querySelectorAll('.m-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const section = tab.closest('.full-menu-wrap');
+        section.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active'));
+        section.querySelectorAll('.m-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        section.querySelector('.m-panel[data-tab="' + tab.dataset.tab + '"]').classList.add('active');
+      });
+    });
+  });
+
+  // ===== Loader =====
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('done');
+    }, 1800);
+  });
+
+  // ===== Page navigation =====
+  const pages = ['home','veg','curry','bakery','pizza','about'];
+  function goTo(name) {
+    if (!pages.includes(name)) return;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + name);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    // Toggle brand-page class to hide nav logo on brand pages
+    if (name === 'home') {
+      document.body.classList.remove('brand-page');
+    } else {
+      document.body.classList.add('brand-page');
+    }
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      goTo(el.dataset.nav);
+    });
+    el.style.cursor = 'pointer';
+  });
+
+  // ===== Keyboard: Esc returns home =====
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') goTo('home');
+  });
+
+  // ===== Inject site footer into brand pages =====
+  const footerHTML = `
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Mango Masala</h3>
+        <p>Four kitchens. One family. Ajmer's quietly favourite restaurant since 1997.</p>
+      </div>
+      <div class="footer-col">
+        <h4>The Four</h4>
+        <ul>
+          <li data-nav="veg">Pure Veg</li>
+          <li data-nav="curry">World Food</li>
+          <li data-nav="bakery">Cake Craft</li>
+          <li data-nav="pizza">Thin Crust</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>Ajmer, Rajasthan<br/>India 305001</p>
+        <p>11 am — 11 pm<br/>All seven days</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>+91 · for reservations</p>
+        <p>hello@mangomasala.com</p>
+        <p>@mangomasala_ajmer</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© Mango Masala · Ajmer · est. 1997</div>
+      <div>A family restaurant</div>
+    </div>
+  `;
+  document.querySelectorAll('.site-footer').forEach(f => f.innerHTML = footerHTML);
+
+  // Re-bind nav after footer inject
+  document.querySelectorAll('.site-footer [data-nav]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      goTo(el.dataset.nav);
+    });
+    el.style.cursor = 'pointer';
+  });
+</script>
+
+</body>
+</html>
